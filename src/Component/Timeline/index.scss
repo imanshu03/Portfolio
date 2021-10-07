@@ -1,0 +1,30 @@
+@import "../../Assets//variables.scss";
+
+.timeline {
+  padding-right: 1rem;
+  width: 2rem;
+  height: 100%;
+  position: relative;
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 4px solid $steelBlue;
+    position: absolute;
+    z-index: 1;
+  }
+
+  .line {
+    width: 2px;
+    background-color: $grey;
+    height: calc(100% - 14px);
+    position: absolute;
+    left: 7px;
+    top: 15px;
+  }
+
+  .last-line {
+    height: 0;
+  }
+}

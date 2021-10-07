@@ -1,0 +1,51 @@
+@import "../../Assets/variables.scss";
+
+.skills-section-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1;
+  padding: 2rem;
+  box-sizing: border-box;
+
+  .skills {
+    margin: 1rem 0;
+
+    h1 {
+      color: $grey;
+      margin: 0;
+      transition: 0.2s all ease-in-out;
+    }
+
+    &:hover {
+      h1 {
+        color: $steelBlue;
+      }
+    }
+
+    &-set {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: center;
+
+      .skill {
+        padding: 0.6rem 1rem;
+        background-color: transparent;
+        border: 1px solid $black;
+        color: $black;
+        border-radius: 6px;
+        margin: 1rem 1.2rem 0 0;
+        transition: 0.2s all ease-in-out;
+
+        &:hover {
+          color: $white;
+          background-color: $steelBlue;
+          border-color: $steelBlue;
+        }
+      }
+    }
+  }
+}

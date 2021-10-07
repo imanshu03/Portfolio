@@ -1,0 +1,85 @@
+@import "../../Assets/variables.scss";
+
+.work-edu-section {
+  flex: 1;
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
+
+  &-content {
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+    height: 100%;
+
+    .details {
+      display: flex;
+      flex-flow: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      margin-bottom: 1rem;
+      width: 100%;
+
+      &:hover {
+        .designation,
+        .company,
+        .cgpa {
+          color: $steelBlue;
+        }
+      }
+
+      .date,
+      .location,
+      .tasks {
+        font-size: $font4;
+        font-style: italic;
+        color: $grey;
+        margin: 0;
+      }
+
+      .cgpa {
+        margin: 0.4rem 0;
+        font-size: $font7;
+        color: $black;
+        font-weight: $light;
+      }
+
+      .designation {
+        margin: 0;
+        font-size: $font6;
+        letter-spacing: 2px;
+        color: $black;
+      }
+
+      .company {
+        margin: 0;
+        font-size: $font7;
+        margin-bottom: 0.4rem;
+        color: $black;
+      }
+
+      .designation,
+      .company,
+      .cgpa {
+        transition: 0.2s all ease-in-out;
+      }
+
+      ul {
+        li {
+          margin-bottom: 0.6rem;
+          font-size: $font3;
+          text-align: justify;
+          color: $black;
+        }
+      }
+    }
+
+    .edu {
+      margin-bottom: 4rem;
+    }
+  }
+}
