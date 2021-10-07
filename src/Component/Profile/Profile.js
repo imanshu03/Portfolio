@@ -40,7 +40,7 @@ const Profile = () => {
             design of the software.
             <br />
             <br />
-            If I am not working then there is a high chance that I am busy in
+            If I am not working then there is a high chance that I am busy
             potting pool balls with my cue or leading my player for a Winner
             Winner Chicken Dinner!
             <br />
