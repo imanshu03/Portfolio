@@ -8,7 +8,7 @@ const prefix = "achievements-section";
 const Achievements = () => {
   return (
     <div className="section">
-      <SectionHeader heading="Achievements" text="Awards I achieved" />
+      <SectionHeader heading="Achievements" text="Awards I have achieved" />
       <div className={prefix}>
         <div className={`${prefix}-card`}>
           <div className="card-top">
