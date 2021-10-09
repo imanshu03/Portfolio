@@ -19,6 +19,7 @@ const Skills = () => {
     "WebPack",
     "Jest/Enzyme",
     "System Design",
+    "Data Structures & Algorithms",
   ];
   const softSkills = [
     "Fluent Communicator",
