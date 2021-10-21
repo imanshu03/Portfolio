@@ -10,6 +10,11 @@
   padding: 2rem;
   box-sizing: border-box;
 
+  position: relative;
+  opacity: 0;
+  right: -2rem;
+  transition: 0.6s all ease-out;
+
   &-top {
     width: 100%;
     display: flex;
@@ -29,10 +34,10 @@
     }
 
     .designation {
-      letter-spacing: 2.2px;
+      letter-spacing: 1px;
       color: $black;
       font-weight: $light;
-      font-size: $font2;
+      font-size: $font8;
     }
 
     .first-name,
@@ -64,10 +69,12 @@
       align-items: center;
       justify-content: center;
 
-      &:hover {
-        border-color: $steelBlue;
-        color: $white;
-        background-color: $steelBlue;
+      @media (hover: hover) {
+        &:hover {
+          border-color: $steelBlue;
+          color: $white;
+          background-color: $steelBlue;
+        }
       }
 
       &:active {
@@ -102,12 +109,14 @@
         color: $grey;
       }
 
-      &:hover {
-        svg * {
-          fill: $steelBlue;
-        }
-        .value {
-          color: $steelBlue;
+      @media (hover: hover) {
+        &:hover {
+          svg * {
+            fill: $steelBlue;
+          }
+          .value {
+            color: $steelBlue;
+          }
         }
       }
     }

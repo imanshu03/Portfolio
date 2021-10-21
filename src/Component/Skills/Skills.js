@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import observeTarget from "../AnimateChild";
 import SectionHeader from "../SectionHeader";
 import "./index.scss";
 
@@ -34,8 +35,31 @@ const Skills = () => {
     "Brainstorming",
   ];
 
+  const ref = useRef();
+
+  useEffect(() => {
+    if (ref.current) {
+      observeTarget(ref.current, (target) => {
+        target.className += ' from-left';
+        setTimeout(() => {
+          const skills = [...document.getElementsByClassName('skill')];
+          skills.forEach((target) => {
+            observeTarget(target, (target) => {
+              const delay = target.getAttribute('data-delay');
+              setTimeout(() => {
+                target.className += ' show-skill';
+              }, Number(delay));
+            }, 1, ref.current);
+          });
+        }, 300);
+      }, 0.5);
+    }
+  }, [ref]);
+
+
+
   return (
-    <div className="section quater-fit">
+    <div className="section quater-fit" ref={ref}>
       <SectionHeader
         heading="Skills"
         text="Values I can add to the organization"
@@ -43,9 +67,9 @@ const Skills = () => {
       <div className="skills-section-content">
         <div className="skills">
           <h1>Technical</h1>
-          <div className="skills-set">
-            {techSkills.map((e) => (
-              <span key={e} className="skill">
+          <div className="skills-wrapper">
+            {techSkills.map((e, idx) => (
+              <span key={e} className="skill" data-delay={(idx + 1) * 50}>
                 {e}
               </span>
             ))}
@@ -53,9 +77,9 @@ const Skills = () => {
         </div>
         <div className="skills">
           <h1>Soft</h1>
-          <div className="skills-set">
-            {softSkills.map((e) => (
-              <span key={e} className="skill">
+          <div className="skills-wrapper">
+            {softSkills.map((e, idx) => (
+              <span key={e} className="skill" data-delay={(techSkills.length + idx + 1) * 50}>
                 {e}
               </span>
             ))}

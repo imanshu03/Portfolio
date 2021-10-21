@@ -1,17 +1,48 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
+import observeTarget from "../AnimateChild";
 import SectionHeader from "../SectionHeader";
 import Timeline from "../Timeline/Timeline";
+import { debounce } from 'lodash';
 import "./index.scss";
 
 const prefix = "work-edu-section";
 
 const WorkExperience = () => {
+
+  const ref = useRef();
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const fn = debounce(function (e) {
+      setWidth(window.innerWidth);
+    }, 50);
+    window.addEventListener('resize', fn);
+    return () => window.removeEventListener('resize', fn);
+  }, []);
+
+  useEffect(() => {
+    if (ref.current) {
+      observeTarget(ref.current, (target) => {
+        target.className += ' from-left';
+        const timelines = [...ref.current.getElementsByClassName('timeline')];
+        timelines.forEach((target) => {
+          observeTarget(target, (target) => {
+            const delay = target.getAttribute('data-delay');
+            setTimeout(() => {
+              target.className += ' show-line';
+            }, Number(delay));
+          }, 1, ref.current);
+        });
+      }, width <= 500 ? 0.3 : 0.5);
+    }
+  }, [ref, width]);
+
   return (
-    <div className="section">
+    <div className="section" ref={ref}>
       <SectionHeader heading="Experience" text="I love what I do" />
       <div className={prefix}>
         <div className={`${prefix}-content`}>
-          <Timeline />
+          <Timeline data-delay={0} />
           <div className="details">
             <p className="date">February, 2021 - Present</p>
             <br />
@@ -57,7 +88,7 @@ const WorkExperience = () => {
           </div>
         </div>
         <div className={`${prefix}-content`}>
-          <Timeline isLast />
+          <Timeline isLast data-delay={600} />
           <div className="details">
             <p className="date">October, 2019 - January, 2021</p>
             <br />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { } from "react";
 
 const SectionHeader = (props) => {
   const { heading, text, image, alt } = props;

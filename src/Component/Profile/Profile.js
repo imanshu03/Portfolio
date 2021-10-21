@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import profileImg from "../../Assets/profile.jpg";
-import "./index.scss";
 import { ReactComponent as MailIcon } from "../../Assets/envelope-fill.svg";
 import { ReactComponent as MobileIcon } from "../../Assets/telephone-fill.svg";
 import { ReactComponent as LocationIcon } from "../../Assets/geo-alt-fill.svg";
 import { ReactComponent as LinkedinIcon } from "../../Assets/linkedin.svg";
 import { ReactComponent as DownloadIcon } from "../../Assets/file-earmark-arrow-down.svg";
 import SectionHeader from "../SectionHeader";
+import { useTypewriter, Cursor } from 'react-simple-typewriter';
+import "./index.scss";
+import observeTarget from "../AnimateChild";
 
 const Profile = () => {
+
+  const [hide, setHide] = useState(false);
+
   const handleDownloadClick = () => {
     const a = document.createElement("a");
     a.href = `https://drive.google.com/uc?id=11rcKwVOYSRMLk8Hz1wmp2TVn3OfGOOqg&export=download`;
@@ -18,8 +23,27 @@ const Profile = () => {
     document.body.removeChild(a);
   };
 
+  const { text } = useTypewriter({
+    words: ['Frontend Developer', 'React.js Developer', 'JavaScript Developer', 'Frontend Developer'],
+    loop: 1,
+    typeSpeed: 100,
+    deleteSpeed: 60,
+    delaySpeed: 1500,
+    onLoopDone: () => setHide(true)
+  });
+
+  const ref = useRef();
+
+  useEffect(() => {
+    if (ref.current) {
+      observeTarget(ref.current, (target) => {
+        target.className += ' from-left';
+      }, 0.5);
+    }
+  }, [ref]);
+
   return (
-    <div className="section full-fit">
+    <div className="section full-fit" ref={ref}>
       <SectionHeader image={profileImg} alt="profile" />
       <div className="profile">
         <div className="profile-top">
@@ -27,7 +51,8 @@ const Profile = () => {
           <br />
           <h1 className="first-name">Imanshu</h1>
           <h1 className="last-name">Rathore</h1>
-          <h3 className="designation">Frontend Engineer</h3>
+          <br />
+          <h3 className="designation">{text}{!hide && <Cursor />}</h3>
           <br />
           <p className="about">
             I'm a software engineer with more than 2 years of experience in

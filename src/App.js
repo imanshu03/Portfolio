@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import {
   WorkExperience,
   Education,
-  Achievements,
+  Skills,
   Profile,
-  Skills
+  Achievements
 } from './Component';
 import { ReactComponent as UpIcon } from './Assets/caret-up-fill.svg';
 import './index.scss';
@@ -38,7 +38,7 @@ const App = () => {
   });
 
   return clear ? (
-    <div className="app">
+    <div id="app">
       <Profile />
       <Skills />
       <WorkExperience />
@@ -48,7 +48,7 @@ const App = () => {
         <button onClick={scrollToTop}>Back to top&ensp;<UpIcon /></button>
       </div>
     </div>
-  ) : < Loader />;
+  ) : <Loader />;
 }
 
 export default App;

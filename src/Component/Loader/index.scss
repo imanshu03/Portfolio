@@ -1,6 +1,6 @@
 @import "../../Assets/variables.scss";
 
-.loader {
+#loader {
   svg {
     position: absolute;
     top: 50%;
@@ -11,4 +11,10 @@
       stroke: $steelBlue;
     }
   }
+  opacity: 1;
+  transition: 0.2s ease-out all;
+}
+
+.hide-loader {
+  opacity: 0;
 }
