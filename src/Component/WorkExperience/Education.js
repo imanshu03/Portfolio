@@ -6,7 +6,7 @@ import "./index.scss";
 
 const prefix = "work-edu-section";
 
-const Education = () => {
+const Education = ({ width }) => {
   const ref = useRef();
 
   useEffect(() => {
@@ -30,10 +30,10 @@ const Education = () => {
             );
           });
         },
-        0.5
+        width <= 800 ? 0.2 : 0.4
       );
     }
-  }, [ref]);
+  }, [ref, width]);
 
   return (
     <div className="section" ref={ref}>
@@ -55,7 +55,7 @@ const Education = () => {
           </div>
         </div>
         <div className={`${prefix}-content`}>
-          <Timeline data-delay={600} />
+          <Timeline data-delay={400} />
           <div className="details edu">
             <p className="date">March, 2013 - April, 2014</p>
             <br />
@@ -68,7 +68,7 @@ const Education = () => {
           </div>
         </div>
         <div className={`${prefix}-content`}>
-          <Timeline isLast data-delay={1200} />
+          <Timeline isLast data-delay={800} />
           <div className="details edu">
             <p className="date">March, 2011 - April, 2012</p>
             <br />

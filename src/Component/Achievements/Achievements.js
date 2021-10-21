@@ -28,7 +28,7 @@ const achievements = [
   },
 ];
 
-const Achievements = () => {
+const Achievements = ({ width }) => {
   const ref = useRef();
 
   useEffect(() => {
@@ -38,10 +38,10 @@ const Achievements = () => {
         (target) => {
           target.className += " from-left";
         },
-        0.5
+        width <= 800 ? 0.2 : 0.4
       );
     }
-  }, [ref]);
+  }, [ref, width]);
 
   return (
     <div className="section" ref={ref}>

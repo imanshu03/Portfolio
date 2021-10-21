@@ -3,38 +3,38 @@ import observeTarget from "../observeTarget";
 import SectionHeader from "../SectionHeader";
 import "./index.scss";
 
-const Skills = () => {
-  const techSkills = [
-    "React.js",
-    "JavaScript ES6+",
-    "TypeScript",
-    "HTML5",
-    "CSS3",
-    "SCSS",
-    "Redux.js",
-    "Redux Saga",
-    "Express.js",
-    "Node.js",
-    "Git",
-    "Adobe Photoshop",
-    "WebPack",
-    "Jest/Enzyme",
-    "System Design",
-    "Data Structures & Algorithms",
-  ];
-  const softSkills = [
-    "Fluent Communicator",
-    "Active Listening",
-    "Collaborative",
-    "Multitasking",
-    "Time Management",
-    "Persuasive",
-    "Rapport Building",
-    "Ability to Work Under Pressure",
-    "Problem Solving",
-    "Brainstorming",
-  ];
+const techSkills = [
+  "React.js",
+  "JavaScript ES6+",
+  "TypeScript",
+  "HTML5",
+  "CSS3",
+  "SCSS",
+  "Redux.js",
+  "Redux Saga",
+  "Express.js",
+  "Node.js",
+  "Git",
+  "Adobe Photoshop",
+  "WebPack",
+  "Jest/Enzyme",
+  "System Design",
+  "Data Structures & Algorithms",
+];
+const softSkills = [
+  "Fluent Communicator",
+  "Active Listening",
+  "Collaborative",
+  "Multitasking",
+  "Time Management",
+  "Persuasive",
+  "Rapport Building",
+  "Ability to Work Under Pressure",
+  "Problem Solving",
+  "Brainstorming",
+];
 
+const Skills = ({ width }) => {
   const ref = useRef();
 
   useEffect(() => {
@@ -60,10 +60,10 @@ const Skills = () => {
             });
           }, 300);
         },
-        0.5
+        width <= 800 ? 0.2 : 0.4
       );
     }
-  }, [ref]);
+  }, [ref, width]);
 
   return (
     <div className="section quater-fit" ref={ref}>
@@ -76,7 +76,7 @@ const Skills = () => {
           <h1>Technical</h1>
           <div className="skills-wrapper">
             {techSkills.map((e, idx) => (
-              <span key={e} className="skill" data-delay={(idx + 1) * 50}>
+              <span key={e} className="skill" data-delay={(idx + 1) * 30}>
                 {e}
               </span>
             ))}
@@ -89,7 +89,7 @@ const Skills = () => {
               <span
                 key={e}
                 className="skill"
-                data-delay={(techSkills.length + idx + 1) * 50}
+                data-delay={(techSkills.length + idx + 1) * 30}
               >
                 {e}
               </span>

@@ -1,23 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import observeTarget from "../observeTarget";
 import SectionHeader from "../SectionHeader";
 import Timeline from "../Timeline/Timeline";
-import { debounce } from "lodash";
 import "./index.scss";
 
 const prefix = "work-edu-section";
 
-const WorkExperience = () => {
+const WorkExperience = ({ width }) => {
   const ref = useRef();
-  const [width, setWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const fn = debounce(function (e) {
-      setWidth(window.innerWidth);
-    }, 50);
-    window.addEventListener("resize", fn);
-    return () => window.removeEventListener("resize", fn);
-  }, []);
 
   useEffect(() => {
     if (ref.current) {
@@ -40,7 +30,7 @@ const WorkExperience = () => {
             );
           });
         },
-        width <= 500 ? 0.3 : 0.5
+        width <= 800 ? 0.2 : 0.4
       );
     }
   }, [ref, width]);
@@ -96,7 +86,7 @@ const WorkExperience = () => {
           </div>
         </div>
         <div className={`${prefix}-content`}>
-          <Timeline isLast data-delay={600} />
+          <Timeline isLast data-delay={400} />
           <div className="details">
             <p className="date">October, 2019 - January, 2021</p>
             <br />
