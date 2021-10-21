@@ -1,14 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import observeTarget from "../AnimateChild";
+import observeTarget from "../observeTarget";
 import SectionHeader from "../SectionHeader";
 import Timeline from "../Timeline/Timeline";
-import { debounce } from 'lodash';
+import { debounce } from "lodash";
 import "./index.scss";
 
 const prefix = "work-edu-section";
 
 const WorkExperience = () => {
-
   const ref = useRef();
   const [width, setWidth] = useState(window.innerWidth);
 
@@ -16,24 +15,33 @@ const WorkExperience = () => {
     const fn = debounce(function (e) {
       setWidth(window.innerWidth);
     }, 50);
-    window.addEventListener('resize', fn);
-    return () => window.removeEventListener('resize', fn);
+    window.addEventListener("resize", fn);
+    return () => window.removeEventListener("resize", fn);
   }, []);
 
   useEffect(() => {
     if (ref.current) {
-      observeTarget(ref.current, (target) => {
-        target.className += ' from-left';
-        const timelines = [...ref.current.getElementsByClassName('timeline')];
-        timelines.forEach((target) => {
-          observeTarget(target, (target) => {
-            const delay = target.getAttribute('data-delay');
-            setTimeout(() => {
-              target.className += ' show-line';
-            }, Number(delay));
-          }, 1, ref.current);
-        });
-      }, width <= 500 ? 0.3 : 0.5);
+      observeTarget(
+        ref.current,
+        (target) => {
+          target.className += " from-left";
+          const timelines = [...ref.current.getElementsByClassName("timeline")];
+          timelines.forEach((target) => {
+            observeTarget(
+              target,
+              (target) => {
+                const delay = target.getAttribute("data-delay");
+                setTimeout(() => {
+                  target.className += " show-line";
+                }, Number(delay));
+              },
+              1,
+              ref.current
+            );
+          });
+        },
+        width <= 500 ? 0.3 : 0.5
+      );
     }
   }, [ref, width]);
 

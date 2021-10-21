@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import observeTarget from "../AnimateChild";
+import observeTarget from "../observeTarget";
 import SectionHeader from "../SectionHeader";
 import "./index.scss";
 
@@ -39,24 +39,31 @@ const Skills = () => {
 
   useEffect(() => {
     if (ref.current) {
-      observeTarget(ref.current, (target) => {
-        target.className += ' from-left';
-        setTimeout(() => {
-          const skills = [...document.getElementsByClassName('skill')];
-          skills.forEach((target) => {
-            observeTarget(target, (target) => {
-              const delay = target.getAttribute('data-delay');
-              setTimeout(() => {
-                target.className += ' show-skill';
-              }, Number(delay));
-            }, 1, ref.current);
-          });
-        }, 300);
-      }, 0.5);
+      observeTarget(
+        ref.current,
+        (target) => {
+          target.className += " from-left";
+          setTimeout(() => {
+            const skills = [...document.getElementsByClassName("skill")];
+            skills.forEach((target) => {
+              observeTarget(
+                target,
+                (target) => {
+                  const delay = target.getAttribute("data-delay");
+                  setTimeout(() => {
+                    target.className += " show-skill";
+                  }, Number(delay));
+                },
+                1,
+                ref.current
+              );
+            });
+          }, 300);
+        },
+        0.5
+      );
     }
   }, [ref]);
-
-
 
   return (
     <div className="section quater-fit" ref={ref}>
@@ -79,7 +86,11 @@ const Skills = () => {
           <h1>Soft</h1>
           <div className="skills-wrapper">
             {softSkills.map((e, idx) => (
-              <span key={e} className="skill" data-delay={(techSkills.length + idx + 1) * 50}>
+              <span
+                key={e}
+                className="skill"
+                data-delay={(techSkills.length + idx + 1) * 50}
+              >
                 {e}
               </span>
             ))}

@@ -6,12 +6,11 @@ import { ReactComponent as LocationIcon } from "../../Assets/geo-alt-fill.svg";
 import { ReactComponent as LinkedinIcon } from "../../Assets/linkedin.svg";
 import { ReactComponent as DownloadIcon } from "../../Assets/file-earmark-arrow-down.svg";
 import SectionHeader from "../SectionHeader";
-import { useTypewriter, Cursor } from 'react-simple-typewriter';
+import { useTypewriter, Cursor } from "react-simple-typewriter";
+import observeTarget from "../observeTarget";
 import "./index.scss";
-import observeTarget from "../AnimateChild";
 
 const Profile = () => {
-
   const [hide, setHide] = useState(false);
 
   const handleDownloadClick = () => {
@@ -24,21 +23,30 @@ const Profile = () => {
   };
 
   const { text } = useTypewriter({
-    words: ['Frontend Developer', 'React.js Developer', 'JavaScript Developer', 'Frontend Developer'],
+    words: [
+      "Frontend Developer",
+      "React.js Developer",
+      "JavaScript Developer",
+      "Frontend Developer",
+    ],
     loop: 1,
     typeSpeed: 100,
     deleteSpeed: 60,
     delaySpeed: 1500,
-    onLoopDone: () => setHide(true)
+    onLoopDone: () => setHide(true),
   });
 
   const ref = useRef();
 
   useEffect(() => {
     if (ref.current) {
-      observeTarget(ref.current, (target) => {
-        target.className += ' from-left';
-      }, 0.5);
+      observeTarget(
+        ref.current,
+        (target) => {
+          target.className += " from-left";
+        },
+        0.5
+      );
     }
   }, [ref]);
 
@@ -52,7 +60,10 @@ const Profile = () => {
           <h1 className="first-name">Imanshu</h1>
           <h1 className="last-name">Rathore</h1>
           <br />
-          <h3 className="designation">{text}{!hide && <Cursor />}</h3>
+          <h3 className="designation">
+            {text}
+            {!hide && <Cursor />}
+          </h3>
           <br />
           <p className="about">
             I'm a software engineer with more than 2 years of experience in

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import observeTarget from "../AnimateChild";
+import observeTarget from "../observeTarget";
 import SectionHeader from "../SectionHeader";
 import Timeline from "../Timeline/Timeline";
 import "./index.scss";
@@ -7,23 +7,31 @@ import "./index.scss";
 const prefix = "work-edu-section";
 
 const Education = () => {
-
   const ref = useRef();
 
   useEffect(() => {
     if (ref.current) {
-      observeTarget(ref.current, (target) => {
-        target.className += ' from-left';
-        const timelines = [...ref.current.getElementsByClassName('timeline')];
-        timelines.forEach((target) => {
-          observeTarget(target, (target) => {
-            const delay = target.getAttribute('data-delay');
-            setTimeout(() => {
-              target.className += ' show-line';
-            }, Number(delay));
-          }, 1, ref.current);
-        });
-      }, 0.5);
+      observeTarget(
+        ref.current,
+        (target) => {
+          target.className += " from-left";
+          const timelines = [...ref.current.getElementsByClassName("timeline")];
+          timelines.forEach((target) => {
+            observeTarget(
+              target,
+              (target) => {
+                const delay = target.getAttribute("data-delay");
+                setTimeout(() => {
+                  target.className += " show-line";
+                }, Number(delay));
+              },
+              1,
+              ref.current
+            );
+          });
+        },
+        0.5
+      );
     }
   }, [ref]);
 
