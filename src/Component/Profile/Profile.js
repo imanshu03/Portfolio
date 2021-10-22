@@ -11,8 +11,6 @@ import observeTarget from "../observeTarget";
 import "./index.scss";
 
 const Profile = ({ width }) => {
-  const [hide, setHide] = useState(false);
-
   const handleDownloadClick = () => {
     const a = document.createElement("a");
     a.href = `https://drive.google.com/uc?id=11rcKwVOYSRMLk8Hz1wmp2TVn3OfGOOqg&export=download`;
@@ -23,17 +21,11 @@ const Profile = ({ width }) => {
   };
 
   const { text } = useTypewriter({
-    words: [
-      "Frontend Developer",
-      "React.js Developer",
-      "JavaScript Developer",
-      "Frontend Developer",
-    ],
-    loop: 1,
+    words: ["Frontend Developer", "React.js Developer", "JavaScript Developer"],
+    loop: false,
     typeSpeed: 100,
     deleteSpeed: 60,
     delaySpeed: 1500,
-    onLoopDone: () => setHide(true),
   });
 
   const ref = useRef();
@@ -62,7 +54,7 @@ const Profile = ({ width }) => {
           <br />
           <h3 className="designation">
             {text}
-            {!hide && <Cursor />}
+            <Cursor />
           </h3>
           <br />
           <p className="about">
