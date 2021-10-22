@@ -122,6 +122,12 @@ body,
   height: 60%;
 }
 
+@media (max-width: 1380px) {
+  .achievements-section {
+    flex-flow: column wrap;
+  }
+}
+
 @media (max-width: 810px) {
   .from-left {
     .section-header {
