@@ -7,3 +7,4 @@
 - JavaScript
 - SCSS
 - Firebase hosting
+- Node v14.15.0
